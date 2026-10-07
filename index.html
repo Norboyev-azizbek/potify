@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POTIFY — Ta'lim Platformasi</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="toast"><i class="fas fa-check-circle"></i> <span></span></div>
+
+<!-- ─── ARTICLE MODAL ─── -->
+<div class="modal" id="articleModal">
+  <div class="modal-box">
+    <div class="modal-top">
+      <button class="modal-close" data-modal-close="articleModal"><i class="fas fa-times"></i></button>
+      <div class="tag" id="modalTag">Yangilik</div>
+      <h2 id="modalTitle"></h2>
+    </div>
+    <div class="modal-body">
+      <div class="modal-emoji" id="modalEmoji"></div>
+      <p id="modalText"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── MESSAGES MODAL ─── -->
+<div class="modal" id="msgsModal">
+  <div class="modal-box">
+    <div class="modal-top">
+      <button class="modal-close" data-modal-close="msgsModal"><i class="fas fa-times"></i></button>
+      <div class="tag">Xabarlar</div>
+      <h2><i class="fas fa-envelope"></i> Xabarlar markazi</h2>
+    </div>
+    <div class="modal-body">
+      <div id="msgSendSection">
+        <h3>📤 Xabar yuborish</h3>
+        <div class="form-group">
+          <label>Kimga</label>
+          <select id="msgTo" class="form-select"><option value="">Tanlang...</option></select>
+        </div>
+        <div class="form-group">
+          <label>Xabar</label>
+          <textarea id="msgText" class="form-input" rows="3" placeholder="Xabar yozing..."></textarea>
+        </div>
+        <button class="btn-submit btn-compact" id="sendMsgBtn"><i class="fas fa-paper-plane"></i> Yuborish</button>
+        <hr>
+      </div>
+      <h3>📨 Kelgan xabarlar <span id="msgCount" class="badge"></span></h3>
+      <div class="msg-list" id="msgList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════════════ -->
+<div id="mainPage" class="page active">
+
+  <div class="header-top">
+    <div class="wrap">
+      <div class="header-top-left">
+        <span><i class="far fa-calendar"></i> 29 Aprel 2026</span>
+        <a href="#" data-art="Biz haqimizda|Platforma">Biz haqimizda</a>
+        <a href="#" data-art="Muharrirlar|Platforma">Muharrirlar</a>
+      </div>
+      <div class="header-top-right">
+        <a href="#" data-lang="O'zbek tanlandi">O'zb</a>
+        <a href="#" data-lang="English selected">Eng</a>
+        <a href="#" data-lang="Русский">Рус</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="header-main">
+      <div class="logo-icon">🎓</div>
+      <div class="logo" data-goto="mainPage">POTIFY<span>.UZ</span></div>
+      <div class="search-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="O'qituvchi, o'quvchi, yutuq qidirish...">
+      </div>
+      <div class="header-actions" id="headerActions">
+        <div class="icon-btn" data-theme title="Tema almashtirish"><i class="fas fa-moon"></i></div>
+        <button class="btn-ghost" data-goto="loginPage"><i class="fas fa-sign-in-alt"></i> Kirish</button>
+        <button class="btn-solid" data-goto="loginPage"><i class="fas fa-user-plus"></i> Ro'yxat</button>
+      </div>
+    </div>
+    <div class="nav-bar wrap">
+      <button class="nav-link active" data-nav="hero">🏫 Maktab</button>
+      <button class="nav-link" data-nav="teachers">👨‍🏫 O'qituvchilar</button>
+      <button class="nav-link" data-nav="students">🎓 O'quvchilar</button>
+      <button class="nav-link" data-nav="achievements">🏆 Yutuqlar</button>
+    </div>
+  </header>
+
+  <div class="ticker">
+    <div class="ticker-label">🔴 YANGI</div>
+    <div class="ticker-track" id="ticker"></div>
+  </div>
+
+  <div class="wrap">
+    <div class="hero" id="hero">
+      <div>
+        <div class="hero-label">Ta'lim Platformasi</div>
+        <h1>O'qish, <em>Rivojlanish</em>, Muvaffaqiyat</h1>
+        <p class="hero-desc">POTIFY — 2015-yildan beri zamonaviy ta'lim beruvchi platforma. 500+ o'quvchi, 30+ tajribali o'qituvchi bilan sifatli ta'limni onlayn boshqaring.</p>
+        <div class="hero-cta">
+          <button class="btn-solid btn-hero" data-goto="loginPage">Boshlash <i class="fas fa-arrow-right"></i></button>
+          <button class="btn-ghost btn-hero" data-scroll="teachers">O'qituvchilar</button>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="num">500+</div><div class="lbl">O'quvchi</div></div>
+          <div class="hero-stat"><div class="num">30+</div><div class="lbl">O'qituvchi</div></div>
+          <div class="hero-stat"><div class="num">50+</div><div class="lbl">Yutuq</div></div>
+          <div class="hero-stat"><div class="num">11</div><div class="lbl">Yil tajriba</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-img hero-img-wide">
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=400&fit=crop" alt="Maktab">
+        </div>
+        <div class="hero-img">
+          <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400&h=280&fit=crop" alt="Dars">
+        </div>
+        <div class="hero-img">
+          <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=280&fit=crop" alt="Lab">
+        </div>
+        <div class="hero-badge">🎓 500+ muvaffaqiyatli o'quvchi</div>
+      </div>
+    </div>
+
+    <div class="sec-head" id="teachers">
+      <h2>👨‍🏫 O'qituvchilar</h2>
+      <span class="sec-more">Barchasi <i class="fas fa-arrow-right"></i></span>
+    </div>
+    <div class="grid-4" id="teacherGrid"></div>
+
+    <div class="sec-head" id="students">
+      <h2>🎓 Iqtidorli o'quvchilar</h2>
+      <span class="sec-more">Barchasi <i class="fas fa-arrow-right"></i></span>
+    </div>
+    <div class="grid-5" id="studentGrid"></div>
+
+    <div class="sec-head" id="achievements">
+      <h2>🏆 So'nggi yutuqlar</h2>
+      <span class="sec-more">Barchasi <i class="fas fa-arrow-right"></i></span>
+    </div>
+    <div class="grid-3" id="achieveGrid"></div>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">POTIFY<span>.UZ</span></div>
+          <p class="footer-desc">Zamonaviy ta'lim platformasi. Bilim va kelajak yo'lida birga rivojlanamiz.</p>
+          <div class="socials">
+            <a href="#" class="s-btn"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#" class="s-btn"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="s-btn"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="s-btn"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Bo'limlar</h4>
+          <ul>
+            <li><a href="#" data-scroll="hero"><i class="fas fa-chevron-right"></i> Maktab</a></li>
+            <li><a href="#" data-scroll="teachers"><i class="fas fa-chevron-right"></i> O'qituvchilar</a></li>
+            <li><a href="#" data-scroll="students"><i class="fas fa-chevron-right"></i> O'quvchilar</a></li>
+            <li><a href="#" data-scroll="achievements"><i class="fas fa-chevron-right"></i> Yutuqlar</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Fanlar</h4>
+          <ul>
+            <li><a href="#" data-art="Matematika|Fan"><i class="fas fa-chevron-right"></i> Matematika</a></li>
+            <li><a href="#" data-art="Fizika|Fan"><i class="fas fa-chevron-right"></i> Fizika</a></li>
+            <li><a href="#" data-art="Ingliz tili|Fan"><i class="fas fa-chevron-right"></i> Ingliz tili</a></li>
+            <li><a href="#" data-art="Kimyo|Fan"><i class="fas fa-chevron-right"></i> Kimyo</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Aloqa</h4>
+          <ul>
+            <li><a href="#"><i class="fas fa-phone"></i> +998 90 123 45 67</a></li>
+            <li><a href="#"><i class="fas fa-envelope"></i> info@potify.uz</a></li>
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> Toshkent shahri</a></li>
+            <li><a href="#"><i class="fas fa-clock"></i> Du–Shan: 09:00–18:00</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 POTIFY.UZ — Barcha huquqlar himoyalangan</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     LOGIN PAGE
+══════════════════════════════════════════════ -->
+<div id="loginPage" class="page">
+  <div class="login-page">
+    <div class="login-left">
+      <div class="login-left-logo">POTIFY<span>.UZ</span></div>
+      <h2>Ta'lim platformasiga xush kelibsiz!</h2>
+      <p>O'qituvchi yoki o'quvchi sifatida kirip, barcha imkoniyatlardan foydalaning.</p>
+      <div class="login-blobs">
+        <div class="login-blob">📊 Baholar</div>
+        <div class="login-blob">📋 Davomatlar</div>
+        <div class="login-blob">💬 Xabarlar</div>
+        <div class="login-blob">🏆 Yutuqlar</div>
+        <div class="login-blob">📚 Dars jadvali</div>
+      </div>
+    </div>
+    <div class="login-right">
+      <div class="login-card-inner">
+        <button class="back-link" data-goto="mainPage"><i class="fas fa-arrow-left"></i> Bosh sahifa</button>
+
+        <div id="loginForm">
+          <h2>Kirish</h2>
+          <p>Hisobingizga kiring</p>
+          <div class="error-box" id="loginErr">Email yoki parol noto'g'ri!</div>
+          <div class="role-tabs">
+            <div class="role-tab active" data-role="admin">🔑 Admin</div>
+            <div class="role-tab" data-role="teacher">👨‍🏫 O'qituvchi</div>
+            <div class="role-tab" data-role="student">🎓 O'quvchi</div>
+          </div>
+          <input type="hidden" id="roleInput" value="admin">
+          <div class="form-group">
+            <label>Email / Telefon</label>
+            <input type="text" id="loginEmail" class="form-input" placeholder="email yoki telefon">
+          </div>
+          <div class="form-group">
+            <label>Parol</label>
+            <input type="password" id="loginPass" class="form-input" placeholder="••••••••">
+          </div>
+          <button class="btn-submit" id="loginBtn">Kirish →</button>
+          <p class="switch-text">Hisobingiz yo'qmi? <a href="#" id="showRegLink">Ro'yxat</a></p>
+          <div class="hint-box">
+            <strong>Demo kirish:</strong><br>
+            Admin: admin@potify.uz / admin123<br>
+            O'qituvchi: aziza@potify.uz / teacher123<br>
+            O'quvchi: 998901234567 / 1234
+          </div>
+        </div>
+
+        <div id="regForm">
+          <h2>Ro'yxat</h2>
+          <p>Yangi hisob yarating</p>
+          <div class="error-box" id="regErr"></div>
+          <div class="form-row">
+            <div class="form-group"><label>Ism</label><input type="text" id="rName" class="form-input" placeholder="Ismingiz"></div>
+            <div class="form-group"><label>Familiya</label><input type="text" id="rSurname" class="form-input" placeholder="Familiyangiz"></div>
+          </div>
+          <div class="form-group"><label>Fan</label><input type="text" id="rSubject" class="form-input" placeholder="Matematika..."></div>
+          <div class="form-group"><label>Email</label><input type="email" id="rEmail" class="form-input" placeholder="email@potify.uz"></div>
+          <div class="form-group"><label>Telefon</label><input type="text" id="rPhone" class="form-input" placeholder="+998 90 000 00 00"></div>
+          <div class="form-row">
+            <div class="form-group"><label>Parol</label><input type="password" id="rPass" class="form-input" placeholder="••••••"></div>
+            <div class="form-group"><label>Tasdiqlash</label><input type="password" id="rPass2" class="form-input" placeholder="••••••"></div>
+          </div>
+          <button class="btn-submit" id="regBtn">Ro'yxatdan o'tish →</button>
+          <p class="switch-text">Hisobingiz bormi? <a href="#" id="showLoginLink">Kirish</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     ADMIN PANEL
+══════════════════════════════════════════════ -->
+<div id="adminPage" class="page">
+  <div class="panel-wrap">
+    <div class="panel-header">
+      <div class="inner">
+        <div>
+          <div class="panel-logo" data-goto="mainPage">POTIFY<span>.UZ</span></div>
+          <div class="panel-title">Admin Panel</div>
+        </div>
+        <div class="panel-actions">
+          <div class="icon-btn icon-btn-dark" data-theme><i class="fas fa-moon"></i></div>
+          <button class="panel-btn" data-msgs><i class="fas fa-envelope"></i> Xabarlar <span id="adminBadge" class="badge"></span></button>
+          <button class="panel-btn red" data-logout><i class="fas fa-sign-out-alt"></i> Chiqish</button>
+        </div>
+      </div>
+    </div>
+    <div class="panel-layout">
+      <div class="sidebar">
+        <div class="sidebar-nav">
+          <div class="sidebar-section">Boshqaruv</div>
+          <button class="sidebar-item active" data-tab="admin" data-tabname="dashboard"><i class="fas fa-chart-line"></i> Dashboard</button>
+          <div class="sidebar-section">Ma'lumotlar</div>
+          <button class="sidebar-item" data-tab="admin" data-tabname="teachers"><i class="fas fa-chalkboard-teacher"></i> O'qituvchilar</button>
+          <button class="sidebar-item" data-tab="admin" data-tabname="students"><i class="fas fa-user-graduate"></i> O'quvchilar</button>
+          <button class="sidebar-item" data-tab="admin" data-tabname="achievements"><i class="fas fa-trophy"></i> Yutuqlar</button>
+          <div class="sidebar-section">Amallar</div>
+          <button class="sidebar-item" data-tab="admin" data-tabname="addTeacher"><i class="fas fa-plus-circle"></i> O'qituvchi qo'sh</button>
+          <button class="sidebar-item" data-tab="admin" data-tabname="addStudent"><i class="fas fa-user-plus"></i> O'quvchi qo'sh</button>
+          <button class="sidebar-item" data-tab="admin" data-tabname="addAchieve"><i class="fas fa-medal"></i> Yutuq qo'sh</button>
+        </div>
+      </div>
+      <div class="panel-content" id="adminContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TEACHER PANEL
+══════════════════════════════════════════════ -->
+<div id="teacherPage" class="page">
+  <div class="panel-wrap">
+    <div class="panel-header">
+      <div class="inner">
+        <div>
+          <div class="panel-logo" data-goto="mainPage">POTIFY<span>.UZ</span></div>
+          <div class="panel-title">O'qituvchi Panel</div>
+        </div>
+        <div class="panel-actions">
+          <div class="icon-btn icon-btn-dark" data-theme><i class="fas fa-moon"></i></div>
+          <button class="panel-btn" data-msgs><i class="fas fa-envelope"></i> Xabarlar <span id="teacherBadge" class="badge"></span></button>
+          <button class="panel-btn red" data-logout><i class="fas fa-sign-out-alt"></i> Chiqish</button>
+        </div>
+      </div>
+    </div>
+    <div class="panel-layout">
+      <div class="sidebar">
+        <div class="sidebar-nav">
+          <div class="sidebar-section">Sahifalar</div>
+          <button class="sidebar-item active" data-tab="teacher" data-tabname="tDash"><i class="fas fa-home"></i> Bosh sahifa</button>
+          <button class="sidebar-item" data-tab="teacher" data-tabname="tStudents"><i class="fas fa-users"></i> O'quvchilarim</button>
+          <button class="sidebar-item" data-tab="teacher" data-tabname="tGrades"><i class="fas fa-star"></i> Baholar</button>
+          <button class="sidebar-item" data-tab="teacher" data-tabname="tAttend"><i class="fas fa-calendar-check"></i> Davomat</button>
+          <button class="sidebar-item" data-tab="teacher" data-tabname="tAchieve"><i class="fas fa-trophy"></i> Yutuqlar</button>
+          <button class="sidebar-item" data-tab="teacher" data-tabname="tMsg"><i class="fas fa-comment-alt"></i> Xabar yuborish</button>
+        </div>
+      </div>
+      <div class="panel-content" id="teacherContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     STUDENT PANEL
+══════════════════════════════════════════════ -->
+<div id="studentPage" class="page">
+  <div class="panel-wrap">
+    <div class="panel-header">
+      <div class="inner">
+        <div>
+          <div class="panel-logo" data-goto="mainPage">POTIFY<span>.UZ</span></div>
+          <div class="panel-title">O'quvchi Panel</div>
+        </div>
+        <div class="panel-actions">
+          <div class="icon-btn icon-btn-dark" data-theme><i class="fas fa-moon"></i></div>
+          <button class="panel-btn" data-msgs><i class="fas fa-envelope"></i> Xabarlar <span id="studentBadge" class="badge"></span></button>
+          <button class="panel-btn red" data-logout><i class="fas fa-sign-out-alt"></i> Chiqish</button>
+        </div>
+      </div>
+    </div>
+    <div class="panel-layout">
+      <div class="sidebar">
+        <div class="sidebar-nav">
+          <div class="sidebar-section">Sahifalar</div>
+          <button class="sidebar-item active" data-tab="student" data-tabname="sDash"><i class="fas fa-home"></i> Bosh sahifa</button>
+          <button class="sidebar-item" data-tab="student" data-tabname="sGrades"><i class="fas fa-star"></i> Baholarim</button>
+          <button class="sidebar-item" data-tab="student" data-tabname="sAttend"><i class="fas fa-calendar-check"></i> Davomatim</button>
+          <button class="sidebar-item" data-tab="student" data-tabname="sAchieve"><i class="fas fa-trophy"></i> Yutuqlarim</button>
+          <button class="sidebar-item" data-tab="student" data-tabname="sSchedule"><i class="fas fa-clock"></i> Dars jadvali</button>
+          <button class="sidebar-item" data-tab="student" data-tabname="sMsg"><i class="fas fa-comment-alt"></i> Xabar yuborish</button>
+        </div>
+      </div>
+      <div class="panel-content" id="studentContent"></div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
